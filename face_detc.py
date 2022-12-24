@@ -112,16 +112,11 @@ def post_process(output_blobs, input_w, input_h):
         keep_idx = cv.dnn.NMSBoxes(face_boxes, face_scores, 0.5, 0.3, top_k=5000)
         # Get NMS results
         nms_faces = []
-        print(len(keep_idx))
-        print(priors[0])
-        
-        return 1
-
-    #     for idx in keep_idx:
-    #         nms_faces.append(faces[idx])
-    #     return np.vstack(np.array(nms_faces))
-    # else:
-    #     return np.vstack(np.array(faces))
+        for idx in keep_idx:
+            nms_faces.append(faces[idx])
+        return np.vstack(np.array(nms_faces))
+    else:
+        return np.vstack(np.array(faces))
 
 if __name__ == "__main__":
 
